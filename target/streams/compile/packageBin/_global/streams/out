@@ -1,0 +1,17 @@
+[0m[[0m[0mdebug[0m] [0m[0mPackaging /home/akhape/chisel/scala/game-of-life/target/scala-2.13/hello-world_2.13-1.0.jar ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Location.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/akhape/chisel/scala/game-of-life/target/scala-2.13/classes/Location.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Cell.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/akhape/chisel/scala/game-of-life/target/scala-2.13/classes/Cell.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Main$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/akhape/chisel/scala/game-of-life/target/scala-2.13/classes/Main$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Main.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/akhape/chisel/scala/game-of-life/target/scala-2.13/classes/Main.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Main$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/akhape/chisel/scala/game-of-life/target/scala-2.13/classes/Main$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Universe.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/akhape/chisel/scala/game-of-life/target/scala-2.13/classes/Universe.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Universe$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/akhape/chisel/scala/game-of-life/target/scala-2.13/classes/Universe$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0mDone packaging.[0m
