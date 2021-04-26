@@ -1,67 +1,52 @@
-class Universe {
+class Universe(val rows:Int, val columns: Int) {
 
-    var rows: Int = 0
-    var columns: Int = 0
-    var matrix: Array[Array[Cell]] = null
+    val matrix: Seq[Seq[Cell]] = (0 until rows).map(row => {
+            (0 until columns).map(column => new Cell(row,column))
+        })
+        
+    def getNeighbouringLocations(row: Int, column: Int): List[(Int, Int)] = {
+       def f(a: Int) = List(a - 1, a, a + 1)
+       val x_locations = f(row).filter(x => {x >= 0 &&  x < rows})
+       val y_locations = f(column).filter(y => {y >= 0 && y < columns}) 
+       x_locations.flatMap(x => {y_locations.map(y => (x, y))}).filterNot(location => {location._1 == row && location._2 == column})
+    }
+
+    def printUniverse() {
+        for(row <- 0 until rows) {
+            for(column <- 0 until columns) {
+                print(" " + matrix(row)(column).value)
+            }
+            println()
+        }
+        println()
+    }
+
+    def updateAliveNeighborCount() {
+        matrix.foreach(row => row.foreach(cell => { 
+            cell.aliveNeighbours = getNeighbouringLocations(cell.location.x, cell.location.y).filter(location => {
+                matrix(location._1)(location._2).alive == true
+            }).size
+        }))
+    }
+
+    def updateUniverse() {
+        updateAliveNeighborCount()
+        matrix.foreach(row => row.foreach(cell => {
+            if(cell.aliveNeighbours > 3) cell.alive = !cell.alive 
+            else if(cell.aliveNeighbours < 2) cell.alive = false
+            cell.value = if(cell.alive) "*" else " "
+        }))
+    }
 
 }
 
 object Universe {
 
     def apply(rows: Int, columns: Int) = {
-        var universe = new Universe
-        universe.rows = rows
-        universe.columns = columns
-        universe.matrix = Array.ofDim[Cell](rows, columns)
-        initUniverse(universe)
+        var universe = new Universe(rows, columns)
         universe
     }
 
-     def initUniverse(universe: Universe) {
-        var row, column = 0
-        for(row <- 0 until universe.rows) {
-            for(column <- 0 until universe.columns) {
-                universe.matrix(row)(column) = new Cell(row, column)
-            }
-        }
-    }
-
-    def printUniverse(universe: Universe) {
-        for(row <- 0 until universe.rows) {
-            for(column <- 0 until universe.columns) {
-                print(universe.matrix(row)(column).value)
-                print(" ")
-            }
-            println()
-        }
-    }
-
-    def getCell(universe: Universe, row: Int, column: Int): Cell = {
-        universe.matrix(row)(column)
-    }
-
-    def updateUniverse(universe: Universe) {
-        updateAliveNeighbourCount(universe)
-        for(row <- 0 until universe.rows) {
-            for(column <- 0 until universe.columns) {
-                var cell = getCell(universe, row, column)
-                cell.alive = (cell.alive && cell.aliveNeighbours == 2) || (cell.aliveNeighbours == 3) 
-                cell.value = if(cell.alive) "*" else " "
-            }
-        }
-    }
-
-    def updateAliveNeighbourCount(universe: Universe) {
-        for(row <- 0 until universe.rows) {
-            for(column <- 0 until universe.columns) {
-                var liveCount = 0
-                var cell = getCell(universe, row, column)
-                cell.getNeighbours(universe, cell).foreach(neighbour => {
-                    if(neighbour.alive) liveCount = liveCount + 1
-                })
-                cell.aliveNeighbours = liveCount       
-            }
-        }
-    }
+   
 
 }

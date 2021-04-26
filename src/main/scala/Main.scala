@@ -1,41 +1,14 @@
 object Main extends App {
   
-  val universe: Universe = Universe(2, 2) 
+  val universe: Universe = Universe(3, 3) 
+
+  def isUniverseAlive = {
+    universe.matrix.flatMap(row => row.filter(cell => cell.alive)).size > 0
+  }
  
-    Universe.printUniverse(universe)
-    Universe.updateUniverse(universe)
-    println()
-
-    Universe.printUniverse(universe)
-    Universe.updateUniverse(universe)
-    println()
-
-    Universe.printUniverse(universe)
-    Universe.updateUniverse(universe)
-    println()
-
-    Universe.printUniverse(universe)
-    Universe.updateUniverse(universe)
-    println()
-
-    Universe.printUniverse(universe)
-    Universe.updateUniverse(universe)
-    println()
-
-    Universe.printUniverse(universe)
-    Universe.updateUniverse(universe)
-    println()
-
-    Universe.printUniverse(universe)
-    Universe.updateUniverse(universe)
-    println()
-
-    Universe.printUniverse(universe)
-    Universe.updateUniverse(universe)
-    println()
-
-    Universe.printUniverse(universe)
-    Universe.updateUniverse(universe)
-    println()
-
+ while(isUniverseAlive) {
+   universe.printUniverse()
+   universe.updateUniverse()
+ }
+  
 }
